@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fraccionaments</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript">
+    function fraccionament(){
+        document.getElementById("banner").style.visibility = "hidden";
+        let objquotes={
+            objquota1:0,
+            objquotan:0,
+            objnumquotes:0
+        }
+        document.getElementById("txtq1").value="";
+        document.getElementById("txtqn").value="";
+        document.getElementById("txtnumq").value="";
+        document.getElementById("txt3q").value="";
+        let letentrada=parseFloat(document.getElementById("txtimport").value);
+        let cadena="";
+        let third="";
+        if (letentrada>6000) {
+            objquota1="";
+            objquotan="";
+            objnumquotes=0;
+        }
+        else if (letentrada>3000)
+        {
+            objquota1=(0.25*letentrada).toFixed(2);
+            objquotan=(0.75*letentrada/11).toFixed(2);
+            objnumquotes=12;
+        }
+        else if (letentrada>1000)
+        {
+            objquota1=(0.25*letentrada).toFixed(2);
+            objquotan=(0.75*letentrada/8).toFixed(2);
+            objnumquotes=9;
+        }
+        else if (letentrada>300)
+        {
+            objquota1=(0.25*letentrada).toFixed(2);
+            objquotan=(0.75*letentrada/5).toFixed(2);
+            objnumquotes=6;
+        }
+        else if (letentrada>89)
+        {
+            objquota1=(0.25*letentrada).toFixed(2);
+            objquotan=(0.75*letentrada/2).toFixed(2);
+            objnumquotes=3;
+            document.getElementById("banner").style.visibility = "visible";
+        }
+        else
+        {
+            objquota1="";
+            objquotan="";
+            objnumquotes=0;
+        }
+        switch(objnumquotes) {
+            case 3:
+            cadena="3 quotes";
+            third=(letentrada/3).toFixed(2);
+            document.getElementById("txt3q").value=third;
+            break;
+            case 6:
+            cadena="6 quotes";
+            break;
+            case 9:
+            cadena="9 quotes";
+            break;
+            case 12:
+            cadena="12 quotes";
+            break;
+            default:
+            cadena="No realitzable";
+        }
+        document.getElementById("txtnumq").value=cadena;
+        document.getElementById("txtq1").value=objquota1;
+        document.getElementById("txtqn").value=objquotan;
+    }
+    </script>
+    <style media="screen">
+    body{
+        background-color: #f1f5f7;
+        font-family: FSEmeric, Arial, sans-serif;
+    }
+    h5 {
+        color: #004571;
+        font-weight: 700;
+    }
+    label.w3-label{
+        color: #E57200;
+        /*font-weight: 900;*/
+    }
+    input{
+        color: #004571;
+    }
+    .taRight{
+        text-align: right;
+    }
+    .outer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .btnfraccionament{
+        background-color: #E57200;
+        color: #ffffff;
+        display: inline-block;
+        font-weight: 700;
+        border-radius: 35px;
+        padding: 14px 28px;
+        line-height: 1;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border: 2px solid transparent;
+    }
+    .btnfraccionament:hover {
+        background-color: #c44100;
+        border-color: #c44100;
+    }
+    .clar{
+        background-color: #fcfcfe;
+    }
+    .fosc{
+        background-color:#f2f5f8;
+    }
+    #banner{
+        visibility: hidden;
+    }
+    </style>
+</head>
+<body class="w3-content">
+    <div class="w3-container w3-padding-16 w3-padding-xlarge">
+        <div class="w3-container w3-padding-16 w3-row w3-center">
+            <div class="w3-container w3-padding-16 w3-col m3">
+                <div class="w3-card-4 w3-round-xlarge w3-padding fosc">
+                    <div class="w3-round-xlarge w3-padding-16 clar">
+                        <h5>Fraccionament</h5>
+                    </div>
+                    <form class="w3-container w3-padding-16 w3-round-large">
+                        <label class="w3-label">Import</label>
+                        <input class="w3-input taRight" type="text" id="txtimport">
+                    </form>
+                </div>
+            </div>
+            <div class="w3-container w3-padding-16 w3-col m3">
+                <div class="w3-card-4 w3-round-xlarge w3-padding fosc">
+                    <div class="w3-round-xlarge w3-padding-16 clar">
+                        <h5>Primera Quota</h5>
+                    </div>
+                    <form class="w3-container w3-padding-16 w3-round-large">
+                        <label class="w3-label">Quota 1</label>
+                        <input disabled class="w3-input taRight" type="text" id="txtq1">
+                    </form>
+                </div>
+            </div>
+            <div class="w3-container w3-padding-16 w3-col m3">
+                <div class="w3-card-4 w3-round-xlarge w3-padding fosc">
+                    <div class="w3-round-xlarge w3-padding-16 clar">
+                        <h5>Quotes</h5>
+                    </div>
+                    <form class="w3-container w3-padding-16 w3-round-large">
+                        <label class="w3-label">Quotes n</label>
+                        <input disabled class="w3-input taRight" type="text" id="txtqn">
+                    </form>
+                </div>
+            </div>
+            <div class="w3-container w3-padding-16 w3-col m3">
+                <div class="w3-card-4 w3-round-xlarge w3-padding fosc">
+                    <div class="w3-round-xlarge w3-padding-16 clar">
+                        <h5>Num. quotes</h5>
+                    </div>
+                    <form class="w3-container w3-padding-16 w3-round-large">
+                        <label class="w3-label">Num. quotes</label>
+                        <input disabled class="w3-input taRight" type="text" id="txtnumq">
+                    </form>
+                </div>
+            </div>
+            <div class="w3-container w3-padding-16 w3-row w3-center">
+                <div class="w3-container w3-padding-16 w3-col m12">
+                    <input class="btnfraccionament" type="button"  value="fraccionament" onclick="fraccionament()">
+                </div>
+            </div>
+            <div class="w3-container w3-padding-16 w3-row outer" id="banner">
+                <div class="w3-container w3-padding-16 w3-col m3 ">
+                    <div class="w3-card-4 w3-round-xlarge w3-padding fosc">
+                        <div class="w3-round-xlarge w3-padding-16 clar">
+                            <h5>En tres quotes iguals</h5>
+                        </div>
+                        <form class="w3-container w3-padding-16 w3-round-large">
+                            <label class="w3-label">Quota</label>
+                            <input disabled class="w3-input taRight" type="text" id="txt3q">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
